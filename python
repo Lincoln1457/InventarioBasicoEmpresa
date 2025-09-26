@@ -1,0 +1,94 @@
+mientras = True
+seleccion = "Eligió la opción para "
+
+def registrar_producto():
+    print(seleccion+"agregar productos al inventario.")
+    producto = input("Por favor, ingrese el nombre del objeto que va a agregar: ")
+    cuantos = int(input("¿Con qué cantidad de unidades cuenta?: "))
+    precio = int(input("¿Cuál es el precio unitario del producto?: "))
+    productos.append({"producto":producto, "cantidad": cuantos, "precio": precio})
+    print("Se ha agregado el producto con satisfacción.")        
+    input("Presione la tecla Enter para volver al inicio.")    
+
+def mostrar_inventario():
+    print(seleccion+"ver la lista de disponibilidad de los productos en su inventario.")
+    for producto in productos:
+        print("Objeto: ", producto["producto"])
+        print("Cantidad: ", producto["cantidad"])
+        print("Costo: ", producto["precio"])
+    input("Presione la tecla Enter para volver al inicio.")
+
+def calcular_valor_total():
+    print(seleccion+"verificar la cantidad total de dinero que tiene en su inventario.")
+    total = 0
+    for producto in productos:
+        total += producto["cantidad"] * producto["precio"]
+    print("El valor total de su inventario es de: ", total)
+    input("Presione la tecla Enter para volver al inicio.")
+    
+def buscar_producto():
+    print(seleccion+"buscar algún producto.")
+    buscar = input("¿Qué producto desea buscar?: ")
+    for producto in productos:
+        if producto["producto"] == buscar:
+            print("Producto: ", producto["producto"])
+            print("Cantidad: ", producto["cantidad"])
+            print("Costo: ", producto["precio"])
+            input("Presione la tecla Enter para volver al inicio.")
+        else:
+            print("El producto no se encuentra en el inventario.")
+            input("Presione la tecla Enter para volver al inicio.")
+    
+def registrar_venta():
+    print(seleccion+"registrar una venta.")
+    queDisminuir = input("¿De qué producto va a registrar la compra?")
+    disminuir = int(input("¿Qué cantidad de unidades fue vendida el día de hoy?"))
+    for producto in productos:
+        if producto["producto"] == queDisminuir:
+            producto["cantidad"] -= disminuir
+            print("Se ha disminuido la cantidad de unidades del producto con éxito.")
+    input("Presione la tecla Enter para volver al inicio.")
+
+productos = []
+
+opcionesDisponibles = '''
+_________________________________________________________
+|                                                       |
+|  Opciones a escoger para la administrar los productos |
+|_______________________________________________________|
+|                                                       |
+| 1.Agregar productos.                                  |
+| 2.Lista de disponibilidad.                            |
+| 3.Suma de valor neto de todos los productos.          |
+| 4.Buscar por nombre.                                  |
+| 5.Agregar venta.                                      |
+| 6.Salir del aplicativo.                               |
+|_______________________________________________________|
+'''
+while mientras == True:
+    print (opcionesDisponibles)
+    indicacion = int(input("¿Qué desea realizar en la noche de hoy?: "))
+    if indicacion == 1:
+        registrar_producto()
+        
+    elif indicacion == 2 :
+        mostrar_inventario()
+        
+    elif indicacion == 3 :
+        calcular_valor_total()
+        
+    elif indicacion == 4 :
+        buscar_producto()
+        
+    elif indicacion == 5 :
+        registrar_venta()
+        
+    elif indicacion == 6 :
+        # indicacion = False
+        print("Salió del sistema, hasta la próxima.")
+        break 
+    
+    elif indicacion > 6 :
+        print("Opción escogida sin acción a realizar.")
+        input("Presione la tecla Enter para volver al menú y verificar la opción que se acomoda más a lo que desea realizar.")
+print ("Gracias por utilizar nuestro sistema que fue creado con mucho esfuerzo. ;)")
